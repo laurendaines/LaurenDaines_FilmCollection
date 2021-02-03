@@ -6,12 +6,14 @@
 
 @model LaurenDaines_FilmCollection.Models.ApplicationResponse
 
+<!--title-->
 <div class="text-center">
     <h1 class="display-4">@ViewBag.Title</h1>
 </div>
 
 <br />
 
+<!--form to input movies-->
 <form method="post" asp-action="EnterMovie">
     <div asp-validation-summary="All"></div>
 
@@ -66,6 +68,7 @@
 
     <br /><br />
     
+    <!--button to submit information to storage-->
     <button type="submit" style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" class="button" value="Submit">
         Submit
     </button>
