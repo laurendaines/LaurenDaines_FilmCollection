@@ -13,22 +13,27 @@ namespace LaurenDaines_FilmCollection.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private IMoviesRepository _repository;
+
+        public HomeController(ILogger<HomeController> logger, IMoviesRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
+        //home page
         public IActionResult Index()
         {
             return View();
         }
 
+        //privacy page
         public IActionResult Privacy()
         {
             return View();
         }
 
-        
+        //enter a movie page
         [HttpGet]
         public IActionResult EnterMovie()
         {
@@ -36,12 +41,12 @@ namespace LaurenDaines_FilmCollection.Controllers
         }
 
         [HttpPost]
-        public IActionResult EnterMovie(ApplicationResponse appResponse)
+        public IActionResult EnterMovie(Movie movie)
         {
             if (ModelState.IsValid)
             {
-                Storage.AddApplication(appResponse);
-                return View("Confirmation");
+                tempStorage.AddMovie(movie);
+                return View("Confirmation", movie);
             }
             else
             {
@@ -49,11 +54,13 @@ namespace LaurenDaines_FilmCollection.Controllers
             }
         }
 
+        //view movies page
         public IActionResult ViewMovie()
         {
-            return View(Storage.Applications.Where(x => x.Title != "Independence Day"));
+            return View(tempStorage.Movies);
         }
 
+        //podcast page
         public IActionResult Podcast()
         {
             return View();

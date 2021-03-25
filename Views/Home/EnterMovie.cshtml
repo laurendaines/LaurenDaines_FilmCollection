@@ -4,7 +4,7 @@
 @{
 }
 
-@model LaurenDaines_FilmCollection.Models.ApplicationResponse
+@model Movie
 
 <!--title-->
 <div class="text-center">
@@ -14,8 +14,7 @@
 <br />
 
 <!--form to input movies-->
-<form method="post" asp-action="EnterMovie">
-    <div asp-validation-summary="All"></div>
+<form method="post" asp-action="Movie">
 
     <table id="movies">
 
@@ -23,7 +22,8 @@
             <th><label asp-for="Category">Category</label></th>
             <th><label asp-for="Title">Title</label></th>
             <th><label asp-for="Year">Year</label></th>
-            <th><label asp-for="Director">Director</label></th>
+            <th><label asp-for="DirectorFirstName">Director's First Name</label></th>
+            <th><label asp-for="DirectorLastName">Director's Last Name</label></th>
             <th><label asp-for="Rating">Rating</label></th>
             <th><label asp-for="Edited">Edited</label></th>
             <th><label asp-for="LentTo">Lent To</label></th>
@@ -45,7 +45,8 @@
             </td>
             <td><input type="text" id="title" asp-for="Title" size=2 value="" /></td>
             <td><input type="number" id="year" asp-for="Year" size=2 value="" /></td>
-            <td><input type="text" id="director" asp-for="Director" size=2 value="" /></td>
+            <td><input type="text" id="director" asp-for="DirectorFirstName" size=2 value="" /></td>
+            <td><input type="text" id="director" asp-for="DirectorLastName" size=2 value="" /></td>
             <td>
                 <select id="rating" asp-for="Rating">
                     <option value="G">G</option>
@@ -67,10 +68,12 @@
     </table>
 
     <br /><br />
-    
+
     <!--button to submit information to storage-->
     <button type="submit" style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" class="button" value="Submit">
         Submit
     </button>
+    
+    <div asp-validation-summary="All"></div>
 
 </form>
